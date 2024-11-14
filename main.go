@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 
 	"github.com/MAG-1998/game/interaction"
@@ -28,9 +29,13 @@ func startgame() {
 
 func executeround() string {
 	currentround++
-	isSpecialround := currentround%3 == 0
-	
-	interaction.Showavailableactions(isSpecialround)
+	IsSpecialround := currentround%3 == 0
+
+	interaction.Showavailableactions(IsSpecialround)
+	userchoice := interaction.GetUserChoice(IsSpecialround)
+
+	fmt.Println(userchoice)
+	return ""
 }
 
 func endgame() {}
