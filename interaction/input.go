@@ -13,12 +13,12 @@ func GetUserChoice(Specialattackisavailable bool) string{
 	for {
 	Playerchoice, _ := GetPlayerInput()
 		if Playerchoice == "1"{
-			return "\nпинаем гада\n"
+			return "1"
 		} else if Playerchoice == "2"{
-			return "\nням ням\n"
+			return "2"
 		} else if Playerchoice == "3" && Specialattackisavailable {
-			return "\nхеликоптер хеликоптер\n"
-		} else if Playerchoice=="3" && Specialattackisavailable == false{
+			return "3"
+		} else if Playerchoice=="3" && !Specialattackisavailable {
 			fmt.Print("\nнедостаточно сигма\n")
 		} else {
 			fmt.Print("\nнорм вещи пиши э!\n")

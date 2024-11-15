@@ -4,8 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-
+	"github.com/MAG-1998/game/actions"
 	"github.com/MAG-1998/game/interaction"
+
 )
 
 var reader = bufio.NewReader(os.Stdin)
@@ -28,18 +29,21 @@ func startgame() {
 }
 
 func executeround() string {
+	fmt.Println("------------- Botanik HP:",actions.Currentmonsterhealth,"-----------------Gopnik HP:", actions.Currentplayerhealth)
 	currentround++
 	IsSpecialround := currentround%3 == 0
 
 	interaction.Showavailableactions(IsSpecialround)
 	userchoice := interaction.GetUserChoice(IsSpecialround)
-	fmt.Println(userchoice)
-	if userchoice == "\nпинаем гада\n" {
-
-	} else if userchoice == "\nням ням\n" {
-
-	} else if userchoice == "\nхеликоптер хеликоптер\n" {
-
+	
+	if userchoice == "1" {
+		fmt.Println("Пинай гада!")
+		actions.AttackMonster(IsSpecialround)
+	} else if userchoice == "2" {
+		fmt.Println("Ням Ням")
+	} else if userchoice == "3" {
+actions.AttackMonster(IsSpecialround)
+fmt.Println("Хеликоптер---Хеликоптер")
 	}
 
 	return ""

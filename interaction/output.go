@@ -2,10 +2,9 @@ package interaction
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
 	"strings"
-	"time"
+	"github.com/MAG-1998/game/interaction/utils"
 )
 
 func PrintGreeting() {
@@ -18,30 +17,22 @@ func PrintGreeting() {
 	if Privet == "ПРИВЕТ" || Privet == "Привет" || Privet == "привет" || Privet == "Privet" || Privet == "privet" || Privet == "PRIVET" {
 		fmt.Println("--------------------Botanik Slayer----------------------")
 		fmt.Println("НОВАЯ ИГРА НАЧИНАЕТСЯ...")
-		fmt.Println("УДАЧИ САЛАГИ")
-		fmt.Println("Ты нашел гопника выбери свое действие:")
+		fmt.Println("УДАЧИ САЛАГИ. ВПЕРЕДИ МНОГО ПРИКЛЮЧЕНИЙ!")
+		fmt.Println("Ты нашел ботаника выбери свое действие:")
 	} else {
 		fmt.Print("раз такие дела приди когда научишься писать привет\n")
 		os.Exit(0)
 	}
 }
 
-func getRandomPhrase() string {
-	phrases := []string{"Че будем?", "Делай! Делай!", "Ехалооо!", "Снова в бой, гопник!", "Ботаник снова на ногах", "Выбери че надо"}
+func Showavailableactions(Specialattackisavailable bool){
+	fmt.Println(utils.GetRandomPhrase())
 
-	rand.Seed(time.Now().UnixNano())
-
-	randomIndex := rand.Intn(len(phrases))
-	return phrases[randomIndex]
-}
-
-func Showavailableactions(Specialattackisavailable bool) {
-	fmt.Println(getRandomPhrase())
-	fmt.Println("--------------")
-	fmt.Println("(1) Гасим лоха")
-	fmt.Println("(2) Семки")
+	fmt.Println("(1)", utils.GetRandomPhraseforattack())
+	fmt.Println("(2)",utils.GetRandomPhraseforheal())
 
 	if Specialattackisavailable {
 		fmt.Println("(3) Пинок с разворота")
 	}
 }
+
