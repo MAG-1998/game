@@ -33,8 +33,15 @@ func executeround() string {
 
 	interaction.Showavailableactions(IsSpecialround)
 	userchoice := interaction.GetUserChoice(IsSpecialround)
-
 	fmt.Println(userchoice)
+	if userchoice == "\nпинаем гада\n" {
+
+	} else if userchoice == "\nням ням\n" {
+
+	} else if userchoice == "\nхеликоптер хеликоптер\n" {
+
+	}
+
 	return ""
 }
 

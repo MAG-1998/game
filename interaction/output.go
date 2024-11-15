@@ -16,7 +16,7 @@ func PrintGreeting() {
 	}
 	Privet = strings.TrimSpace(Privet)
 	if Privet == "ПРИВЕТ" || Privet == "Привет" || Privet == "привет" || Privet == "Privet" || Privet == "privet" || Privet == "PRIVET" {
-		fmt.Println("Botanik Slayer")
+		fmt.Println("--------------------Botanik Slayer----------------------")
 		fmt.Println("НОВАЯ ИГРА НАЧИНАЕТСЯ...")
 		fmt.Println("УДАЧИ САЛАГИ")
 		fmt.Println("Ты нашел гопника выбери свое действие:")
