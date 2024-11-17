@@ -9,6 +9,11 @@ import (
 
 var currentround = 0
 
+var PlayerAttackDmg int
+var Playerhealvalue int
+var Monsterattackdmg int
+var Monsterheal int
+
 func main() {
 	startgame()
 
@@ -18,43 +23,51 @@ func main() {
 		winner, loser = executeround()
 	}
 
-	endgame(winner,loser)
+	endgame(winner, loser)
 }
 
 func startgame() {
 	interaction.PrintGreeting()
 }
 
-func executeround() (winner string,loser string) {
+func executeround() (winner string, loser string) {
 	currentround++
 	var playerhealth int
 	var monsterhealth int
-	IsSpecialround := currentround%3 == 0
-	is777 := currentround%13 == 0
+	IsSpecialround := currentround % actions.PLAYER_SPECIALATTACKROUND == 0
+	is777 := currentround % actions.MONSTER_SPECIALATTACKROUND == 0
 
 	interaction.Showavailableactions(IsSpecialround)
 	userchoice := interaction.GetUserChoice(IsSpecialround)
 
 	if userchoice == "1" {
-		fmt.Println("Пинай гада!")
-		 actions.AttackMonster(IsSpecialround)
+		PlayerAttackDmg=actions.AttackMonster(IsSpecialround,is777)
 	} else if userchoice == "2" {
 		fmt.Println("Ням Ням")
-		 actions.HealPlayer()
+		Playerhealvalue=actions.HealPlayer()
 	} else if userchoice == "3" {
-		actions.AttackMonster(IsSpecialround)
+		PlayerAttackDmg=actions.AttackMonster(IsSpecialround,is777)
 		fmt.Println("Хеликоптер---Хеликоптер")
 	}
-	actions.AttackPlayer(is777)
+	Monsterattackdmg, Monsterheal =actions.AttackPlayer(is777)
 	playerhealth, monsterhealth = actions.Gethealthamounts()
-	fmt.Printf("================HP Гопника : %v============= HP Ботаника: %v================", playerhealth, monsterhealth)
+	rounddata := interaction.Rounddata{
+		Action:           userchoice,
+		PlayerHealth:     playerhealth,
+		MonsterHealth:    monsterhealth,
+		PlayerAttackDmg:  PlayerAttackDmg,
+		Monsterattackdmg: Monsterattackdmg,
+		Playerheal:       Playerhealvalue,
+		Monsterheal: Monsterheal,
+	}
+	interaction.PrintRoundstatistics(&rounddata)
 
-	if playerhealth <=0 {
+	if playerhealth <= 0 {
 		return "Ботаник", "Гопник"
-	} else if monsterhealth<=0 {
+	} else if monsterhealth <= 0 {
 		return "Гопник", "Ботаник"
 	}
-	return "",""
+	return "", ""
 }
 
 func endgame(winner string, loser string) {

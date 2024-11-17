@@ -20,6 +20,7 @@ func GetUserChoice(Specialattackisavailable bool) string{
 			return "3"
 		} else if Playerchoice=="3" && !Specialattackisavailable {
 			fmt.Print("\nнедостаточно сигма\n")
+			
 		} else {
 			fmt.Print("\nнорм вещи пиши э!\n")
 		}
