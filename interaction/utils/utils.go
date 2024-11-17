@@ -13,7 +13,6 @@ func GetRandomPhraseforheal() string {
 	return phrases[randomIndex]
 }
 
-
 func GetRandomPhrase() string {
 	phrases := []string{"Че будем?", "Делай! Делай!", "Ехалооо!", "Снова в бой, гопник!", "Ботаник снова на ногах", "Выбери че надо"}
 
