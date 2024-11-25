@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
+	"github.com/common-nighthawk/go-figure"
 	"github.com/MAG-1998/game/actions"
 	"github.com/MAG-1998/game/interaction/utils"
 )
@@ -30,7 +30,8 @@ func PrintGreeting() {
 
 		Privet = strings.TrimSpace(Privet)
 		if strings.EqualFold(Privet, "привет") || strings.EqualFold(Privet, "privet") {
-			fmt.Println("--------------------Botanik Slayer----------------------")
+			asciifigure:=figure.NewColorFigure("----Botanik Slayer----","","blue",true)
+			asciifigure.Print()
 			fmt.Println("НОВАЯ ИГРА НАЧИНАЕТСЯ...")
 			fmt.Println("УДАЧИ САЛАГИ. ВПЕРЕДИ МНОГО ПРИКЛЮЧЕНИЙ!")
 			fmt.Println("Ты нашел ботаника выбери свое действие:")
@@ -54,9 +55,13 @@ func Showavailableactions(Specialattackisavailable bool) {
 
 func Declarewinner(winner string, loser string) {
 	fmt.Println("___________________________________________________________________________________")
-	fmt.Println("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-Милиция приехала-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-Драка закончилась-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-")
+	asciifigue:=figure.NewColorFigure("-+-+-POLICE ARRIVED-+-+-","","red",true)
+	asciifigue.Scroll(5000, 200, "left")
+	asciifigue=figure.NewColorFigure("+-+-FIGHT OVER-+-+","","blue",true)
+	asciifigue.Blink(5000, 500, -1)
 	fmt.Println("___________________________________________________________________________________")
-	fmt.Println("Но одного отправили в больницу а другого в обезянник")
+	fmt.Println("\033[32m+-+-+-Драка закончилась-+-+-+\nНо одного отправили в больницу а другого в обезянник\033[0m")
+	
 	fmt.Println("___________________________________________________________________________________")
 	fmt.Printf("%vа в больницу а %vа в обезьянник\n", loser, winner)
 }
